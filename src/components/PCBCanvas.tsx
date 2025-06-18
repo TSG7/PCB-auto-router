@@ -28,6 +28,12 @@ export const PCBCanvas = ({
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    console.log("Rendering canvas with:", {
+      nets: nets.length,
+      routedPaths: routedPaths.length,
+      gridSize
+    });
+
     // Clear canvas
     ctx.fillStyle = "#0f172a"; // slate-900
     ctx.fillRect(0, 0, canvasSize.width, canvasSize.height);
@@ -36,9 +42,10 @@ export const PCBCanvas = ({
     drawGrid(ctx, canvasSize, gridSize);
 
     // Draw routed paths first (behind pins)
-    routedPaths.forEach(path => {
+    routedPaths.forEach((path, index) => {
       const net = nets.find(n => n.id === path.netId);
       if (net) {
+        console.log(`Drawing path ${index} for net ${net.name}:`, path);
         drawRoutedPath(ctx, path, net.color, gridSize);
       }
     });
@@ -78,8 +85,10 @@ export const PCBCanvas = ({
   const drawNet = (ctx: CanvasRenderingContext2D, net: Net, isSelected: boolean) => {
     if (net.pins.length === 0) return;
 
-    // Draw connections between pins as dashed lines (before routing)
-    if (net.pins.length > 1) {
+    // Only draw dashed lines if no routes exist for this net
+    const hasRoute = routedPaths.some(path => path.netId === net.id);
+    
+    if (net.pins.length > 1 && !hasRoute) {
       ctx.strokeStyle = net.color + "40"; // semi-transparent
       ctx.lineWidth = 1;
       ctx.setLineDash([5, 5]);
@@ -126,31 +135,55 @@ export const PCBCanvas = ({
   const drawRoutedPath = (ctx: CanvasRenderingContext2D, path: RoutedPath, color: string, gridSize: number) => {
     const cellSize = Math.min(canvasSize.width / gridSize, canvasSize.height / gridSize);
     
+    console.log(`Drawing routed path with cellSize: ${cellSize}, segments: ${path.segments.length}`);
+    
     ctx.strokeStyle = color;
-    ctx.lineWidth = 3;
+    ctx.lineWidth = 4;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
 
-    path.segments.forEach(segment => {
+    // Draw a subtle background for the path
+    ctx.shadowColor = color;
+    ctx.shadowBlur = 3;
+
+    path.segments.forEach((segment, segIndex) => {
       if (segment.length < 2) return;
+
+      console.log(`Drawing segment ${segIndex} with ${segment.length} points:`, segment);
 
       ctx.beginPath();
       const startPoint = segment[0];
-      ctx.moveTo(
-        startPoint.x * cellSize + cellSize / 2,
-        startPoint.y * cellSize + cellSize / 2
-      );
+      const startX = startPoint.x * cellSize + cellSize / 2;
+      const startY = startPoint.y * cellSize + cellSize / 2;
+      
+      console.log(`Start point: grid(${startPoint.x}, ${startPoint.y}) -> canvas(${startX}, ${startY})`);
+      ctx.moveTo(startX, startY);
 
       for (let i = 1; i < segment.length; i++) {
         const point = segment[i];
-        ctx.lineTo(
-          point.x * cellSize + cellSize / 2,
-          point.y * cellSize + cellSize / 2
-        );
+        const canvasX = point.x * cellSize + cellSize / 2;
+        const canvasY = point.y * cellSize + cellSize / 2;
+        
+        console.log(`Point ${i}: grid(${point.x}, ${point.y}) -> canvas(${canvasX}, ${canvasY})`);
+        ctx.lineTo(canvasX, canvasY);
       }
       
       ctx.stroke();
+      
+      // Draw connection points for debugging
+      segment.forEach((point, pointIndex) => {
+        const canvasX = point.x * cellSize + cellSize / 2;
+        const canvasY = point.y * cellSize + cellSize / 2;
+        
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(canvasX, canvasY, 2, 0, 2 * Math.PI);
+        ctx.fill();
+      });
     });
+
+    // Reset shadow
+    ctx.shadowBlur = 0;
   };
 
   const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
@@ -174,6 +207,11 @@ export const PCBCanvas = ({
             : "Select a net to start adding pins"
           }
         </p>
+        {routedPaths.length > 0 && (
+          <p className="text-emerald-400 text-sm mt-1">
+            {routedPaths.length} net(s) routed with colored paths
+          </p>
+        )}
       </div>
       
       <div className="border-2 border-slate-600 rounded-lg overflow-hidden bg-slate-900">
@@ -190,7 +228,7 @@ export const PCBCanvas = ({
       <div className="mt-4 text-xs text-slate-400 grid grid-cols-3 gap-4">
         <div>Canvas: {canvasSize.width}×{canvasSize.height}</div>
         <div>Grid: {gridSize}×{gridSize}</div>
-        <div>Nets: {nets.length} | Pins: {nets.reduce((sum, net) => sum + net.pins.length, 0)}</div>
+        <div>Nets: {nets.length} | Pins: {nets.reduce((sum, net) => sum + net.pins.length, 0)} | Routes: {routedPaths.length}</div>
       </div>
     </div>
   );
