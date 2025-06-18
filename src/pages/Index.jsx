@@ -4,20 +4,19 @@ import { PCBCanvas } from "@/components/PCBCanvas";
 import { NetManager } from "@/components/NetManager";
 import { RoutingControls } from "@/components/RoutingControls";
 import { RoutingStats } from "@/components/RoutingStats";
-import { Net, Pin, RoutedPath } from "@/types/pcb";
 import { routeAllNets } from "@/utils/routing";
 import { toast } from "sonner";
 
 const Index = () => {
-  const [nets, setNets] = useState<Net[]>([]);
-  const [routedPaths, setRoutedPaths] = useState<RoutedPath[]>([]);
+  const [nets, setNets] = useState([]);
+  const [routedPaths, setRoutedPaths] = useState([]);
   const [gridSize, setGridSize] = useState(50);
   const [canvasSize] = useState({ width: 800, height: 600 });
   const [isRouting, setIsRouting] = useState(false);
-  const [selectedNetId, setSelectedNetId] = useState<string | null>(null);
+  const [selectedNetId, setSelectedNetId] = useState(null);
 
-  const addNet = (name: string, color: string) => {
-    const newNet: Net = {
+  const addNet = (name, color) => {
+    const newNet = {
       id: `net-${Date.now()}`,
       name,
       color,
@@ -27,7 +26,7 @@ const Index = () => {
     toast.success(`Net "${name}" created`);
   };
 
-  const addPinToNet = (netId: string, pin: Pin) => {
+  const addPinToNet = (netId, pin) => {
     setNets(prev => prev.map(net => 
       net.id === netId 
         ? { ...net, pins: [...net.pins, pin] }
@@ -35,7 +34,7 @@ const Index = () => {
     ));
   };
 
-  const removeNet = (netId: string) => {
+  const removeNet = (netId) => {
     setNets(prev => prev.filter(net => net.id !== netId));
     setRoutedPaths(prev => prev.filter(path => path.netId !== netId));
     if (selectedNetId === netId) {
@@ -43,7 +42,7 @@ const Index = () => {
     }
   };
 
-  const removePinFromNet = (netId: string, pinId: string) => {
+  const removePinFromNet = (netId, pinId) => {
     setNets(prev => prev.map(net => 
       net.id === netId 
         ? { ...net, pins: net.pins.filter(pin => pin.id !== pinId) }
@@ -74,7 +73,7 @@ const Index = () => {
         toast.success("All nets routed successfully!");
       }
     } catch (error) {
-      toast.error("Routing failed: " + (error as Error).message);
+      toast.error("Routing failed: " + error.message);
     } finally {
       setIsRouting(false);
     }
@@ -85,9 +84,9 @@ const Index = () => {
     toast.info("All routes cleared");
   };
 
-  const handleCanvasClick = (x: number, y: number) => {
+  const handleCanvasClick = (x, y) => {
     if (selectedNetId) {
-      const pin: Pin = {
+      const pin = {
         id: `pin-${Date.now()}`,
         x,
         y

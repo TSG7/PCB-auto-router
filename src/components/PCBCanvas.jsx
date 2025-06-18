@@ -1,15 +1,5 @@
 
 import { useRef, useEffect } from "react";
-import { Net, RoutedPath, GridPoint } from "@/types/pcb";
-
-interface PCBCanvasProps {
-  nets: Net[];
-  routedPaths: RoutedPath[];
-  gridSize: number;
-  canvasSize: { width: number; height: number };
-  selectedNetId: string | null;
-  onCanvasClick: (x: number, y: number) => void;
-}
 
 export const PCBCanvas = ({ 
   nets, 
@@ -18,8 +8,8 @@ export const PCBCanvas = ({
   canvasSize, 
   selectedNetId,
   onCanvasClick 
-}: PCBCanvasProps) => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+}) => {
+  const canvasRef = useRef(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -57,7 +47,7 @@ export const PCBCanvas = ({
 
   }, [nets, routedPaths, gridSize, canvasSize, selectedNetId]);
 
-  const drawGrid = (ctx: CanvasRenderingContext2D, size: { width: number; height: number }, gridSize: number) => {
+  const drawGrid = (ctx, size, gridSize) => {
     ctx.strokeStyle = "#1e293b"; // slate-800
     ctx.lineWidth = 0.5;
 
@@ -82,7 +72,7 @@ export const PCBCanvas = ({
     }
   };
 
-  const drawNet = (ctx: CanvasRenderingContext2D, net: Net, isSelected: boolean) => {
+  const drawNet = (ctx, net, isSelected) => {
     if (net.pins.length === 0) return;
 
     // Only draw dashed lines if no routes exist for this net
@@ -132,7 +122,7 @@ export const PCBCanvas = ({
     }
   };
 
-  const drawRoutedPath = (ctx: CanvasRenderingContext2D, path: RoutedPath, color: string, gridSize: number) => {
+  const drawRoutedPath = (ctx, path, color, gridSize) => {
     const cellSize = Math.min(canvasSize.width / gridSize, canvasSize.height / gridSize);
     
     console.log(`Drawing routed path with cellSize: ${cellSize}, segments: ${path.segments.length}`);
@@ -186,7 +176,7 @@ export const PCBCanvas = ({
     ctx.shadowBlur = 0;
   };
 
-  const handleCanvasClick = (event: React.MouseEvent<HTMLCanvasElement>) => {
+  const handleCanvasClick = (event) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 

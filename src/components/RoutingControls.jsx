@@ -5,15 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Route, Trash2, Settings } from "lucide-react";
 
-interface RoutingControlsProps {
-  gridSize: number;
-  onGridSizeChange: (size: number) => void;
-  onRouteAll: () => void;
-  onClearRoutes: () => void;
-  isRouting: boolean;
-  disabled: boolean;
-}
-
 export const RoutingControls = ({
   gridSize,
   onGridSizeChange,
@@ -21,7 +12,7 @@ export const RoutingControls = ({
   onClearRoutes,
   isRouting,
   disabled
-}: RoutingControlsProps) => {
+}) => {
   return (
     <Card className="bg-slate-800 border-slate-600">
       <CardHeader>

@@ -2,14 +2,8 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Zap, TrendingUp } from "lucide-react";
-import { Net, RoutedPath } from "@/types/pcb";
 
-interface RoutingStatsProps {
-  nets: Net[];
-  routedPaths: RoutedPath[];
-}
-
-export const RoutingStats = ({ nets, routedPaths }: RoutingStatsProps) => {
+export const RoutingStats = ({ nets, routedPaths }) => {
   const totalPins = nets.reduce((sum, net) => sum + net.pins.length, 0);
   const routedNets = routedPaths.length;
   const totalWireLength = routedPaths.reduce((sum, path) => sum + path.totalLength, 0);
