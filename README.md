@@ -1,3 +1,7 @@
+![image](https://github.com/user-attachments/assets/4bebe3d2-9299-4edd-98b3-122fd42152dd)
+![image](https://github.com/user-attachments/assets/0c9dd9fb-2ad3-4724-b3d7-10d3dc1bf9eb)
+
+THIS IS HOW OUR WEB PAGE LOOK
 
 Follow these steps:
 
