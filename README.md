@@ -1,24 +1,3 @@
-# Welcome to your Lovable project
-
-## Project info
-
-**URL**: https://lovable.dev/projects/c666a322-7dfa-48c5-b502-c99f4d00e4f3
-
-## How can I edit this code?
-
-There are several ways of editing your application.
-
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/c666a322-7dfa-48c5-b502-c99f4d00e4f3) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
 Follow these steps:
 
@@ -55,19 +34,91 @@ npm run dev
 This project is built with:
 
 - Vite
-- TypeScript
+- Javascript
 - React
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
 
-Simply open [Lovable](https://lovable.dev/projects/c666a322-7dfa-48c5-b502-c99f4d00e4f3) and click on Share -> Publish.
+# PCB Auto-Router
 
-## Can I connect a custom domain to my Lovable project?
+A modern, interactive multi-group PCB routing visualizer built with React, JavaScript, Tailwind CSS, and shadcn-ui.
 
-Yes, you can!
+## Features
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+- Visualize and auto-route multiple PCB nets with colored paths
+- Add, remove, and manage nets and pins
+- Interactive canvas with grid and snapping
+- Responsive dark-themed UI
+- Built with Vite for fast development
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16 or higher recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
+
+### Installation
+
+Clone the repository:
+
+```sh
+git clone <YOUR_GIT_URL>
+cd <project name>
+```
+
+Install dependencies:
+
+```sh
+npm install
+# or
+yarn install
+```
+
+### Running the Development Server
+
+```sh
+npm run dev
+# or
+yarn dev
+```
+
+Open [http://localhost:5173](http://localhost:5173) in your browser to view the app.
+
+## Project Structure
+
+- `src/` - Main application source code
+  - `components/` - React components (NetManager, RoutingControls, PCBCanvas, etc.)
+  - `pages/` - Page components
+  - `utils/` - Utility functions (e.g., routing algorithms)
+- `public/` - Static assets
+- `index.html` - Main HTML file
+
+## Technologies Used
+
+- [React](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [shadcn-ui](https://ui.shadcn.com/)
+- [Vite](https://vitejs.dev/)
+
+## Deployment
+
+You can deploy this project to any static hosting provider (Vercel, Netlify, GitHub Pages, etc.):
+
+```sh
+npm run build
+# or
+yarn build
+```
+
+The production-ready files will be in the `dist/` folder.
+
+## License
+
+This project is licensed under the MIT License.
+
+---
+
+**Made with ❤️ for PCB enthusiasts.**

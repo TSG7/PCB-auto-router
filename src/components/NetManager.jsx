@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -38,7 +37,7 @@ export const NetManager = ({
   };
 
   return (
-    <Card className="bg-slate-800 border-slate-600">
+    <Card className="bg-sidebar border-sidebar-border w-full">
       <CardHeader>
         <CardTitle className="text-emerald-400 flex items-center gap-2">
           <Circle className="w-5 h-5" />
@@ -55,7 +54,7 @@ export const NetManager = ({
               onChange={(e) => setNewNetName(e.target.value)}
               onKeyPress={handleKeyPress}
               placeholder="Enter net name (e.g., VCC, GND)"
-              className="bg-slate-700 border-slate-600 text-white placeholder-slate-400"
+              className="bg-background border-sidebar-border text-foreground placeholder-sidebar-accent"
             />
             <Button 
               onClick={handleAddNet}
@@ -72,10 +71,9 @@ export const NetManager = ({
 
         {/* Nets List */}
         <div className="space-y-2">
-          <Label className="text-slate-300">Existing Nets ({nets.length})</Label>
-          
+          <Label className="text-sidebar-foreground">Existing Nets ({nets.length})</Label>
           {nets.length === 0 ? (
-            <div className="text-slate-400 text-sm py-4 text-center border border-slate-600 rounded-lg border-dashed">
+            <div className="text-sidebar-accent text-sm py-4 text-center border border-sidebar-border rounded-lg border-dashed">
               No nets created yet. Add a net to get started.
             </div>
           ) : (
@@ -85,8 +83,8 @@ export const NetManager = ({
                   key={net.id}
                   className={`p-3 rounded-lg border transition-all cursor-pointer ${
                     selectedNetId === net.id
-                      ? "border-emerald-500 bg-emerald-900/20"
-                      : "border-slate-600 bg-slate-700 hover:bg-slate-600"
+                      ? "border-primary bg-primary/10"
+                      : "border-sidebar-border bg-background hover:bg-sidebar-accent/20"
                   }`}
                   onClick={() => onSelectNet(selectedNetId === net.id ? null : net.id)}
                 >
@@ -117,15 +115,15 @@ export const NetManager = ({
 
                   {/* Pin List */}
                   {net.pins.length > 0 && (
-                    <div className="mt-2 space-y-1">
-                      <div className="text-xs text-slate-400">Pins:</div>
-                      <div className="flex flex-wrap gap-1">
+                    <div className="mt-2 space-y-1 w-full">
+                      <div className="text-xs text-sidebar-accent">Pins:</div>
+                      <div className="flex flex-col gap-1 w-full max-h-20 overflow-y-auto">
                         {net.pins.map((pin, index) => (
                           <div
                             key={pin.id}
-                            className="flex items-center gap-1 bg-slate-600 rounded px-2 py-1 text-xs"
+                            className="flex items-center gap-1 bg-sidebar-accent rounded px-2 py-1 text-xs"
                           >
-                            <span className="text-slate-200">
+                            <span className="text-sidebar-foreground">
                               {index + 1}: ({Math.round(pin.x)}, {Math.round(pin.y)})
                             </span>
                             <button

@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BarChart3, Zap, TrendingUp } from "lucide-react";
@@ -12,10 +11,10 @@ export const RoutingStats = ({ nets, routedPaths }) => {
   const routingEfficiency = nets.length > 0 ? Math.round((routedNets / nets.length) * 100) : 0;
 
   return (
-    <Card className="bg-slate-800 border-slate-600">
+    <Card className="bg-slate-800 border-slate-700">
       <CardHeader>
-        <CardTitle className="text-emerald-400 flex items-center gap-2">
-          <BarChart3 className="w-5 h-5" />
+        <CardTitle className="text-emerald-400 flex items-center gap-2 text-xl font-semibold">
+          <BarChart3 className="w-6 h-6" />
           Routing Statistics
         </CardTitle>
       </CardHeader>
@@ -37,8 +36,7 @@ export const RoutingStats = ({ nets, routedPaths }) => {
           <div className="flex justify-between items-center">
             <span className="text-slate-300 text-sm">Routing Progress</span>
             <Badge 
-              variant={routingEfficiency === 100 ? "default" : "secondary"}
-              className={routingEfficiency === 100 ? "bg-emerald-600" : "bg-slate-600"}
+              className="bg-emerald-500 text-white text-xs font-semibold px-2 py-1"
             >
               {routingEfficiency}%
             </Badge>

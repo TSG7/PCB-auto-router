@@ -6,89 +6,93 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
+    /* Light theme - Modern PCB Designer Colors */
+    --background: 210 20% 98%;
+    --foreground: 215 25% 15%;
+    
+    --card: 210 20% 98%;
+    --card-foreground: 215 25% 15%;
+    
+    --popover: 210 20% 98%;
+    --popover-foreground: 215 25% 15%;
+    
+    --primary: 158 64% 52%; /* Emerald primary */
     --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
+    
+    --secondary: 210 40% 94%;
+    --secondary-foreground: 215 25% 15%;
+    
+    --muted: 210 40% 94%;
+    --muted-foreground: 215 16% 47%;
+    
+    --accent: 158 64% 52%;
+    --accent-foreground: 210 40% 98%;
+    
+    --destructive: 0 84% 60%;
     --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 158 64% 52%;
+    
+    --radius: 0.75rem;
+    
+    /* Sidebar colors - Light theme */
+    --sidebar-background: 210 25% 97%;
+    --sidebar-foreground: 215 25% 15%;
+    --sidebar-primary: 158 64% 52%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 94%;
+    --sidebar-accent-foreground: 215 25% 15%;
+    --sidebar-border: 214 32% 88%;
+    --sidebar-ring: 158 64% 52%;
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
+    /* Dark theme - Modern PCB Designer Colors */
+    --background: 215 28% 7%; /* Deep slate background */
+    --foreground: 210 40% 95%; /* Light text */
+    
+    --card: 215 25% 10%; /* Card background with subtle transparency effect */
+    --card-foreground: 210 40% 95%;
+    
+    --popover: 215 25% 10%;
+    --popover-foreground: 210 40% 95%;
+    
+    --primary: 158 64% 52%; /* Emerald green - tech/engineering feel */
+    --primary-foreground: 215 28% 7%;
+    
+    --secondary: 215 25% 15%; /* Darker secondary */
+    --secondary-foreground: 210 40% 95%;
+    
+    --muted: 215 25% 15%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 158 64% 52%; /* Emerald accent */
+    --accent-foreground: 215 28% 7%;
+    
+    --destructive: 0 63% 55%; /* Softer red */
     --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    
+    --border: 215 25% 18%; /* Subtle borders */
+    --input: 215 25% 18%;
+    --ring: 158 64% 52%;
+    
+    /* Enhanced Sidebar colors for PCB theme */
+    --sidebar-background: 215 25% 8%; /* Slightly different from main bg */
+    --sidebar-foreground: 210 30% 92%; /* High contrast text */
+    --sidebar-primary: 158 64% 52%; /* Emerald primary */
+    --sidebar-primary-foreground: 215 28% 7%;
+    --sidebar-accent: 215 25% 15%; /* Subtle accent areas */
+    --sidebar-accent-foreground: 210 30% 85%;
+    --sidebar-border: 215 25% 18%; /* Subtle borders */
+    --sidebar-ring: 158 64% 52%;
+    
+    /* Additional PCB-specific variables */
+    --pcb-grid: 215 25% 12%; /* Grid lines */
+    --pcb-trace-default: 158 64% 52%; /* Default trace color */
+    --pcb-pin-shadow: 0 0% 0% / 0.3; /* Pin shadows */
+    --pcb-canvas-bg: 215 28% 6%; /* Canvas background */
   }
 }
 
@@ -96,8 +100,120 @@
   * {
     @apply border-border;
   }
-
+  
   body {
     @apply bg-background text-foreground;
+    /* Add subtle texture/grain for premium feel */
+    background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 20px 20px;
+  }
+  
+  /* Custom scrollbar for dark theme */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted/20;
+    border-radius: 4px;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-accent/40 hover:bg-accent/60;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+  }
+  
+  /* Enhanced focus states for accessibility */
+  *:focus-visible {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background outline-none;
+  }
+  
+  /* Smooth transitions for interactive elements */
+  button, input, select, textarea {
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
+  /* Glass-morphism effect utility */
+  .glass {
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: hsla(var(--card) / 0.6);
+    border: 1px solid hsla(var(--border) / 0.3);
+  }
+  
+  /* PCB-specific styles */
+  .pcb-canvas {
+    background: linear-gradient(135deg, 
+      hsl(var(--pcb-canvas-bg)) 0%, 
+      hsl(215 28% 8%) 100%);
+  }
+  
+  .pcb-grid-line {
+    stroke: hsl(var(--pcb-grid));
+    stroke-width: 0.5;
+    opacity: 0.3;
+  }
+  
+  .pcb-trace {
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(0 2px 4px hsla(0 0% 0% / 0.3));
+  }
+  
+  .pcb-pin {
+    filter: drop-shadow(0 4px 8px hsla(0 0% 0% / 0.4));
+  }
+  
+  /* Animation utilities */
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes glow {
+    from {
+      box-shadow: 0 0 5px hsl(var(--primary) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.8), 0 0 30px hsl(var(--primary) / 0.4);
+    }
+  }
+  
+  /* Gradient text utility */
+  .gradient-text {
+    background: linear-gradient(135deg, 
+      hsl(var(--primary)) 0%, 
+      hsl(198 93% 60%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Modern button hover effects */
+  .btn-modern {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .btn-modern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      hsla(var(--primary-foreground) / 0.1), 
+      transparent);
+    transition: left 0.5s;
+  }
+  
+  .btn-modern:hover::before {
+    left: 100%;
   }
 }

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { PCBCanvas } from "@/components/PCBCanvas";
 import { NetManager } from "@/components/NetManager";
@@ -99,54 +98,66 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-900 text-white">
-      <header className="bg-slate-800 border-b border-slate-700 p-4">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-3xl font-bold text-emerald-400 flex items-center gap-3">
-            <div className="w-8 h-8 bg-emerald-500 rounded-lg flex items-center justify-center">
-              <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
+    <div className="min-h-screen dark">
+      <div className="min-h-screen bg-background text-foreground">
+        <header className="bg-sidebar border-b border-sidebar-border p-6 rounded-t-xl">
+          <div className="max-w-7xl mx-auto">
+            <h1 className="text-3xl font-bold text-primary flex items-center gap-3">
+              <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <div className="w-4 h-4 border-2 border-white rounded-sm"></div>
+              </div>
+              .PCB Auto-Router
+            </h1>
+            <p className="text-sidebar-accent mt-1">
+              Interactive Multi-Group PCB Routing Visualizer
+            </p>
+          </div>
+        </header>
+
+        <div className="max-w-7xl mx-auto p-6 flex flex-row gap-6">
+          {/* Sidebar */}
+          <div className="w-96 flex flex-col gap-6">
+            <div className="bg-sidebar rounded-xl shadow p-6 flex-1">
+              <NetManager
+                nets={nets}
+                selectedNetId={selectedNetId}
+                onAddNet={addNet}
+                onRemoveNet={removeNet}
+                onSelectNet={setSelectedNetId}
+                onRemovePin={removePinFromNet}
+              />
             </div>
-            PCB Auto-Router
-          </h1>
-          <p className="text-slate-400 mt-1">Interactive Multi-Group PCB Routing Visualizer</p>
-        </div>
-      </header>
+            <div className="bg-sidebar rounded-xl shadow p-6 flex-0">
+              <RoutingControls
+                gridSize={gridSize}
+                onGridSizeChange={setGridSize}
+                onRouteAll={handleRouteAll}
+                onClearRoutes={clearRoutes}
+                isRouting={isRouting}
+                disabled={nets.length === 0}
+              />
+            </div>
+            <div className="bg-sidebar rounded-xl shadow p-6 flex-0">
+              <RoutingStats
+                nets={nets}
+                routedPaths={routedPaths}
+              />
+            </div>
+          </div>
 
-      <div className="max-w-7xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-4 gap-6">
-        <div className="lg:col-span-1 space-y-6">
-          <NetManager
-            nets={nets}
-            selectedNetId={selectedNetId}
-            onAddNet={addNet}
-            onRemoveNet={removeNet}
-            onSelectNet={setSelectedNetId}
-            onRemovePin={removePinFromNet}
-          />
-          
-          <RoutingControls
-            gridSize={gridSize}
-            onGridSizeChange={setGridSize}
-            onRouteAll={handleRouteAll}
-            onClearRoutes={clearRoutes}
-            isRouting={isRouting}
-            disabled={nets.length === 0}
-          />
-
-          <RoutingStats
-            nets={nets}
-            routedPaths={routedPaths}
-          />
-        </div>
-
-        <div className="lg:col-span-3">
-          <PCBCanvas
-            nets={nets}
-            routedPaths={routedPaths}
-            gridSize={gridSize}
-            canvasSize={canvasSize}
-            selectedNetId={selectedNetId}
-            onCanvasClick={handleCanvasClick}
-          />
+          {/* Main Canvas */}
+          <div className="flex-1 flex flex-col">
+            <div className="bg-card rounded-xl shadow p-6 flex-1">
+              <PCBCanvas
+                nets={nets}
+                routedPaths={routedPaths}
+                gridSize={gridSize}
+                canvasSize={canvasSize}
+                selectedNetId={selectedNetId}
+                onCanvasClick={handleCanvasClick}
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>
