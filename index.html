@@ -4,19 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>PCB Auto-Router</title>
-    <meta name="description" content=" Interactive Multi-Group PCB Routing Visualizer" />
+    <meta name="description" content="Interactive Multi-Group PCB Routing Visualizer" />
     <meta name="author" content="Sai Ganesh" />
-
-    <meta property="og:title" content=" PCB Auto-Router" />
-    <meta property="og:description" content=" Interactive Multi-Group PCB Routing Visualizer" />
+    <meta property="og:title" content="PCB Auto-Router" />
+    <meta property="og:description" content="Interactive Multi-Group PCB Routing Visualizer" />
     <meta property="og:type" content="website" />
-   
 
-    
+    <!-- Add favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
 
-   
-
-    <!-- Optional: Add a dark background for the whole page -->
     <style>
       html, body {
         background: #19202a;
@@ -29,6 +25,15 @@
   </head>
 
   <body>
+    <div style="text-align: center; padding: 20px;">
+      <img src="/logo.png" alt="Arduino Logo" style="width: 150px; height: auto;" />
+    </div>
+
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
