@@ -18,7 +18,105 @@ npm i
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
 ```
+PCB Auto-Routing Engine (MST + A*)
+This project implements a lightweight PCB auto-routing engine that combines Minimum Spanning Tree (MST) and A* pathfinding to efficiently route electrical nets on a grid-based canvas.
 
+🚀 Core Algorithm
+🔗 MST (Minimum Spanning Tree)
+Used to determine the optimal structure to connect multiple pins in a net.
+
+Ensures minimum total wire length.
+
+Implemented via a greedy method: connecting the nearest pin in the unvisited set to the visited set.
+
+🧠 A* Pathfinding
+Used to route each connection between pin pairs from the MST.
+
+Ensures shortest valid path between pins, avoiding occupied cells.
+
+Uses Manhattan Distance as the heuristic (perfect for grid-based PCBs).
+
+💡 Why This Combination Works:
+MST provides a globally optimal plan for connecting pins.
+
+A* ensures each connection in the plan is physically feasible on the board.
+
+Ensures collision-free, bend-minimizing, and efficient routing.
+
+🧩 Algorithm Steps
+Grid Initialization
+
+Based on user-selected resolution (e.g., 25x25, 50x50, etc.).
+
+Route All Nets
+
+For each net:
+
+Convert all pin coordinates to grid cells.
+
+Skip nets with fewer than 2 pins.
+
+Use MST to decide pin pairs.
+
+Use A* to route each pair.
+
+Mark routed paths as occupied in the grid.
+
+Result Metrics
+
+For each net:
+
+totalLength of all paths
+
+bendCount (change of direction in paths)
+
+⚙️ Tech Stack
+Language: JavaScript / React
+
+UI Libraries: TailwindCSS, Lucide Icons
+
+Algorithms: Custom implementations of MST and A*
+
+📂 Key Functions
+routeAllNets(nets, canvasSize, gridSize)
+Entry point for routing.
+
+Calls routeNet() for each net.
+
+routeNet(net, grid, canvasSize, gridSize)
+Builds MST between pins.
+
+Calls findPath() using A* for each MST edge.
+
+findPath(start, goal, grid)
+Standard A* with Manhattan distance.
+
+Avoids blocked/occupied cells.
+
+countBends(path)
+Calculates the number of direction changes in the routed path.
+
+✅ Features
+Grid-based visualization
+
+Adjustable routing resolution
+
+Collision-free guarantee
+
+Bend and length metrics
+
+Clear route/failure logging
+
+🔍 Future Improvements
+Dijkstra fallback for high-density grids
+
+Layer-based routing (multi-layer PCBs)
+
+Drag-and-drop pin placement
+
+Route editing tools
+
+Made with ❤️ by Sai Ganesh
 **Edit a file directly in GitHub**
 
 - Navigate to the desired file(s).
